@@ -15,7 +15,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
-    //https://github.com/imagine10255/laravel53-vuejs2-jwt-auth
+
     public function register(RegisterFormRequest $request)
     {
         User::create([
@@ -29,7 +29,7 @@ class AuthController extends Controller
     {
         try {
             $token = JWTAuth::attempt($request->only('email', 'password'), [
-                'exp' => Carbon::now()->addWeek()->timestamp,
+                'exp' => Carbon::now()->addHour()->timestamp,
             ]);
         } catch (JWTException $e) {
             return response()->json([
@@ -42,13 +42,8 @@ class AuthController extends Controller
                 'error' => 'Could not authenticate',
             ], 401);
         } else {
-            $data = [];
-            $meta = [];
-
-            $data['name'] = $request->user()->name;
-            $meta['token'] = $token;
-
             return response()->json([
+                'data' => $request->user(),
                 'token' => $token
             ]);
         }

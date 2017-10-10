@@ -14,22 +14,22 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => ['api']], function () {
-    Route::post('register', [
+    /*Route::post('register', [
         'uses' => 'Auth\AuthController@register',
-    ]);
+    ]);*/
 
     Route::post('signin', [
         'uses' => 'Auth\AuthController@signin',
     ]);
 
-    /*Route::get('user', [
-        'uses' => 'UserController@index',
-    ]);*/
-
     Route::group(['middleware' => 'jwt.auth'], function () {
-        Route::get('/user', [
-            'uses' => 'UserController@index',
+        Route::get('/getlocation', [
+            'uses' => 'LocationController@getLocation',
         ]);
+        Route::post('/setlocation', [
+            'uses' => 'LocationController@storeLocation',
+        ]);
+
     });
 
 });
