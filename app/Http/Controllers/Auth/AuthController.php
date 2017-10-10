@@ -42,9 +42,11 @@ class AuthController extends Controller
                 'error' => 'Could not authenticate',
             ], 401);
         } else {
+            $data = $request->user();
+            $data['token'] = $token;
             return response()->json([
-                'data' => $request->user(),
-                'token' => $token
+                'msg' => 'success',
+                'data' => $data
             ]);
         }
     }

@@ -18,7 +18,7 @@ Route::group(['middleware' => ['api']], function () {
         'uses' => 'Auth\AuthController@register',
     ]);*/
 
-    Route::post('signin', [
+    Route::post('auth', [
         'uses' => 'Auth\AuthController@signin',
     ]);
 
