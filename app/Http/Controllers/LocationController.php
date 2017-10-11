@@ -26,7 +26,9 @@ class LocationController extends Controller
 
     public function storeLocation(Request $request)
     {
+
         $request->request->add(['user_id' => $request->user()->id]);
+        //dd($request->all());
         if (Location::create($request->all())) {
             return response()->json([
                 'msg' => 'Location Create successfully'

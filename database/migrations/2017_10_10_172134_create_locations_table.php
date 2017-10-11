@@ -20,10 +20,10 @@ class CreateLocationsTable extends Migration
             $table->double('longitude');
             $table->timestamps();
 
-            $table->foreign('user_id')
+            /*$table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
+                ->onDelete('cascade');*/
         });
     }
 
